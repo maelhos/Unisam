@@ -1,0 +1,7 @@
+
+(library
+ (public_name unisam)
+ (name unisam)
+ (modules elf)
+ (preprocess
+  (pps ppx_deriving.show)))

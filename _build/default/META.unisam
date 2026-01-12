@@ -1,0 +1,6 @@
+description = ""
+requires = "ppx_deriving.runtime"
+archive(byte) = "unisam.cma"
+archive(native) = "unisam.cmxa"
+plugin(byte) = "unisam.cma"
+plugin(native) = "unisam.cmxs"

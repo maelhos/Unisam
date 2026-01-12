@@ -1,0 +1,45 @@
+(lang dune 3.20)
+(name unisam)
+(sections (lib .) (libexec .) (bin ../../bin) (doc ../../doc/unisam))
+(files
+ (lib
+  (META
+   dune-package
+   elf.ml
+   unisam.a
+   unisam.cma
+   unisam.cmi
+   unisam.cmt
+   unisam.cmx
+   unisam.cmxa
+   unisam.ml
+   unisam__Elf.cmi
+   unisam__Elf.cmt
+   unisam__Elf.cmx))
+ (libexec (unisam.cmxs))
+ (bin (unisam))
+ (doc (LICENSE README.md)))
+(library
+ (name unisam)
+ (kind normal)
+ (archives (byte unisam.cma) (native unisam.cmxa))
+ (plugins (byte unisam.cma) (native unisam.cmxs))
+ (native_archives unisam.a)
+ (requires ppx_deriving.runtime)
+ (main_module_name Unisam)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name unisam)
+     (visibility public)
+     (kind alias)
+     (source (path Unisam) (impl (path unisam.ml-gen))))
+    (name Unisam)
+    (modules
+     (module
+      (obj_name unisam__Elf)
+      (visibility public)
+      (source (path Elf) (impl (path elf.ml))))))
+   (wrapped true))))
