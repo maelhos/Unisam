@@ -1,7 +1,6 @@
 build:
 	@dune build --profile release
-	@rm -f unisam
-	@cp _build/install/default/bin/unisam .
+	@ln -s _build/install/default/bin/unisam unisam
 
 clean:
 	@dune clean
